@@ -1,5 +1,3 @@
-
-
 import 'package:app_iris/presentation/views/settings_page.dart';
 import 'package:flutter/material.dart';
 
@@ -9,23 +7,32 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/settings');
+            },
+            icon: Icon(Icons.settings)),
+        title: Text('Home'),
+      ),
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
-              Text("data"),
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => SettingsPage()),
-                  );
-                },
-                child: Text(
-                  "Button",
-                  style: TextStyle(backgroundColor: Colors.amber),
-                ),
+              Image.asset(
+                'lib/data/assets/images/logo.png',
+                width: 250,
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+
+                      onPressed: () {}, child: Text('Recrutamento')
+                  ),
+                  TextButton(onPressed: () {}, child: Text('Sentris')),
+                ],
+              )
             ],
           ),
         ),
