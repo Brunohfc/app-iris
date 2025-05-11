@@ -8,7 +8,7 @@ part of 'proposta_model.dart';
 
 class PropostaModelAdapter extends TypeAdapter<PropostaModel> {
   @override
-  final int typeId = 1;
+  final int typeId = 2;
 
   @override
   PropostaModel read(BinaryReader reader) {

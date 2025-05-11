@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:app_iris/data/models/proposta_model.dart';
 
@@ -12,12 +11,11 @@ class HiveInit{
   static Future<void> init() async{
 
     final boxDirectory = await getApplicationDocumentsDirectory();
+
     Hive.init(boxDirectory.path);
 
     Hive.registerAdapter(PropostaModelAdapter());
 
-    var box = await Hive.openBox<PropostaModel>(boxName);
-
-
+    await Hive.openBox<PropostaModel>(boxName);
   }
 }
