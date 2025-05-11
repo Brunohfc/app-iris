@@ -1,4 +1,3 @@
-import 'package:app_iris/presentation/views/settings_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -27,10 +26,13 @@ class HomePage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
-
-                      onPressed: () {}, child: Text('Recrutamento')
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/recrutamento');
+                      }, child: Text('Recrutamento')
                   ),
-                  TextButton(onPressed: () {}, child: Text('Sentris')),
+                  TextButton(onPressed: () {
+                    Navigator.pushNamed(context, '/sentiris');
+                  }, child: Text('Sentiris')),
                 ],
               )
             ],

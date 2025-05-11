@@ -1,5 +1,10 @@
 import 'package:app_iris/data/providers/proposta_provider.dart';
 import 'package:app_iris/presentation/views/home_page.dart';
+import 'package:app_iris/presentation/views/planos/plano_dois.dart';
+import 'package:app_iris/presentation/views/planos/plano_tres.dart';
+import 'package:app_iris/presentation/views/planos/plano_um.dart';
+import 'package:app_iris/presentation/views/recrutamento.dart';
+import 'package:app_iris/presentation/views/sentiris.dart';
 import 'package:app_iris/presentation/views/settings_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,15 +31,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        routes: {'/settings': (context) => SettingsPage()},
-        theme: ThemeData(
-            textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(backgroundColor: Colors.blue),
-            ),
-            appBarTheme: AppBarTheme(
-              backgroundColor: Colors.blue,
-            )),
-        home: HomePage(),
-        );
+      routes: {
+        '/settings': (context) => SettingsPage(),
+        '/sentiris': (context) => SentirisPage(),
+        '/recrutamento': (context) => Recrutamento(),
+        '/planoUm' : (context) => PlanoUm(),
+        'planoDois' : (context) => PlanoDois(),
+        'planoTres' : (context) => PlanoTres()
+      },
+      theme: ThemeData(
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(backgroundColor: Colors.blue),
+          ),
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.blue,
+          )),
+      home: HomePage(),
+    );
   }
 }

@@ -12,6 +12,10 @@ class PropostaLocal{
      box = Hive.box<PropostaModel>(boxName);
    }
 
+   Future<Box> openBox() async{
+      return Hive.box(boxName);
+   }
+
   Future<void> adicionarProposta(PropostaModel proposta) async{
     await box.add(proposta);
   }
