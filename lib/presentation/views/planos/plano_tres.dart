@@ -3,25 +3,35 @@ import 'package:app_iris/shared/proposta_calculo.dart';
 import 'package:flutter/material.dart';
 
 class PlanoTres extends StatelessWidget {
-  const PlanoTres({super.key});
+  PlanoTres({super.key});
+
+  PropostaCalculo propostaCalculo = PropostaCalculo.empty();
 
   @override
   Widget build(BuildContext context) {
-
-    final funcionarios = ModalRoute.of(context)!.settings.arguments;
+    final int? funcionarios =
+    ModalRoute.of(context)!.settings.arguments as int?;
 
     return Scaffold(
+      appBar: AppBar(title: Text('Plano tres')),
+      body: FutureBuilder<double>(
+        future: propostaCalculo.calcularProposta('3'), // passa '1', '2' ou '3'
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          }
 
-      appBar: AppBar(
-        title: Text('Plano 03'),
-
-      ),
-      body: Column(
-
-        children: [
-          Text('Plano com $funcionarios funcionários'),
-          Text('Investimento: ')
-        ],
+          final resultado = snapshot.data! * funcionarios!;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text('Resultado: R\$ ${resultado.toStringAsFixed(2)}'),
+              ),
+              Text('Número de funcionários: $funcionarios'),
+            ],
+          );
+        },
       ),
     );
   }

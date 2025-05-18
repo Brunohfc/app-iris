@@ -1,6 +1,6 @@
 import 'package:app_iris/data/datasources/local/proposta_local.dart';
+import 'package:app_iris/shared/helpers/converter_helper.dart';
 import 'package:flutter/material.dart';
-
 
 class SentirisPage extends StatefulWidget {
   SentirisPage({super.key});
@@ -10,7 +10,6 @@ class SentirisPage extends StatefulWidget {
 }
 
 class _SentirisPageState extends State<SentirisPage> {
-
   TextEditingController _funcionariosController = TextEditingController();
 
   PropostaLocal proposta = PropostaLocal();
@@ -41,34 +40,35 @@ class _SentirisPageState extends State<SentirisPage> {
             children: [
               TextButton(
                   onPressed: () {
-                    final int converterFuncionarios = int.tryParse(_funcionariosController.text) ?? 0;
+                    final int funcionarios =
+                        ConverterHelper.conveter(_funcionariosController.text);
 
                     Navigator.pushNamed(context, '/planoUm',
-                        arguments: converterFuncionarios);
+                        arguments: funcionarios);
                   },
                   child: Text('Proposta 1')),
-              TextButton(onPressed: () {
-                Navigator.pushNamed(context, '/planoDois',
-
-                    arguments: _funcionariosController.text.isNotEmpty
-                    ? _funcionariosController.text
-                    : _funcionariosController.text = '0');
-              }, child: Text('Proposta 2')),
-              TextButton(onPressed: () {
-                Navigator.pushNamed(context, '/planoTres', arguments:
-                _funcionariosController.text.isNotEmpty
-                    ? _funcionariosController.text
-                    : _funcionariosController.text = '0'
-                );
-              }, child: Text('Proposta 3')),
+              TextButton(
+                  onPressed: () {
+                    final int funcionarios = ConverterHelper.conveter(_funcionariosController.text);
+                    Navigator.pushNamed(context, '/planoDois',
+                        arguments: funcionarios);
+                  },
+                  child: Text('Proposta 2')),
+              TextButton(
+                  onPressed: () {
+                    final int funcionarios = ConverterHelper.conveter(_funcionariosController.text);
+                    Navigator.pushNamed(context, '/planoTres',
+                        arguments: funcionarios);
+                  },
+                  child: Text('Proposta 3')),
             ],
           ),
-          TextButton(onPressed: () async{
-            final valor = await proposta.acessarDadosDaUltimaProposta('porcentagem1');
-
-
-
-          }, child: Text('Voltar')),
+          TextButton(
+              onPressed: () async {
+                final valor =
+                    await proposta.acessarDadosDaUltimaProposta('porcentagem1');
+              },
+              child: Text('Voltar')),
         ],
       ),
     );
