@@ -36,8 +36,8 @@ class MyApp extends StatelessWidget {
         '/sentiris': (context) => SentirisPage(),
         '/recrutamento': (context) => Recrutamento(),
         '/planoUm' : (context) => PlanoUm(),
-        'planoDois' : (context) => PlanoDois(),
-        'planoTres' : (context) => PlanoTres()
+        '/planoDois' : (context) => PlanoDois(),
+        '/planoTres' : (context) => PlanoTres()
       },
       theme: ThemeData(
           textButtonTheme: TextButtonThemeData(

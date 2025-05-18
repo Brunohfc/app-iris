@@ -54,6 +54,10 @@ class PropostaLocal {
         return proposta?.porcentagem1;
       case 'porcentagem2':
         return proposta?.porcentagem2;
+      case 'porcentagem3':
+        return proposta?.porcentagem3;
+      case 'porcentagemContratacao':
+        return proposta?.porcentagemContratacao;
       default:
         throw Exception('Campo "$dados" não encontrado.');
     }

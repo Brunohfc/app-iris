@@ -1,3 +1,4 @@
+import 'package:app_iris/shared/proposta_calculo.dart';
 import 'package:flutter/material.dart';
 
 class PlanoDois extends StatelessWidget {

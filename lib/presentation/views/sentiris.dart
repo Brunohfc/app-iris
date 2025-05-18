@@ -48,8 +48,9 @@ class _SentirisPageState extends State<SentirisPage> {
                   },
                   child: Text('Proposta 1')),
               TextButton(onPressed: () {
-                Navigator.pushNamed(context, 'planoDois', arguments:
-                _funcionariosController.text.isNotEmpty
+                Navigator.pushNamed(context, '/planoDois',
+
+                    arguments: _funcionariosController.text.isNotEmpty
                     ? _funcionariosController.text
                     : _funcionariosController.text = '0');
               }, child: Text('Proposta 2')),

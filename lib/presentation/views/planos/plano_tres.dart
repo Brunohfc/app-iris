@@ -1,3 +1,5 @@
+import 'package:app_iris/data/datasources/local/proposta_local.dart';
+import 'package:app_iris/shared/proposta_calculo.dart';
 import 'package:flutter/material.dart';
 
 class PlanoTres extends StatelessWidget {

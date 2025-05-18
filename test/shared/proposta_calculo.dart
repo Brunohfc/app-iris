@@ -11,8 +11,8 @@ import 'package:path/path.dart' as path;
 void main(){
   
   test('should return 65', (){
-    final proposta = PropostaCalculo(10, 50, 15);
-    expect(proposta.calcularProposta(), 65.0);
+    final proposta = PropostaCalculo(10, 50);
+    expect(proposta.calcularProposta(0,0), 65.0);
   });
 
   setUp(() async {
@@ -46,5 +46,7 @@ void main(){
 
     expect(resultado, 15);
   });
+
+
 
 }
