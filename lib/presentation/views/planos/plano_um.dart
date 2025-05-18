@@ -1,12 +1,21 @@
+import 'package:app_iris/data/datasources/local/proposta_local.dart';
+import 'package:app_iris/shared/proposta_calculo.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+
+import '../../../data/models/proposta_model.dart';
 
 class PlanoUm extends StatelessWidget {
-  const PlanoUm({super.key});
+  PlanoUm({super.key});
+
+  var box = Hive.box<PropostaModel>('proposta_box');
+  PropostaLocal propostaLocal = PropostaLocal();
+  PropostaCalculo propostaCalculo = PropostaCalculo.empty();
 
   @override
   Widget build(BuildContext context) {
 
-    final funcionarios = ModalRoute.of(context)!.settings.arguments;
+    final int? funcionarios = ModalRoute.of(context)!.settings.arguments as int?;
 
     return Scaffold(
 
@@ -18,7 +27,7 @@ class PlanoUm extends StatelessWidget {
 
         children: [
           Text('Plano com $funcionarios funcionários'),
-          Text('Investimento: ')
+          Text('Investimento: $funcionarios')
         ],
       ),
     );

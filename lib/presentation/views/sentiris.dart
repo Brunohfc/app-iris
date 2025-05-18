@@ -1,6 +1,7 @@
 import 'package:app_iris/data/datasources/local/proposta_local.dart';
 import 'package:flutter/material.dart';
 
+
 class SentirisPage extends StatefulWidget {
   SentirisPage({super.key});
 
@@ -9,10 +10,10 @@ class SentirisPage extends StatefulWidget {
 }
 
 class _SentirisPageState extends State<SentirisPage> {
+
   TextEditingController _funcionariosController = TextEditingController();
 
-  PropostaLocal propostaLocal = PropostaLocal();
-
+  PropostaLocal proposta = PropostaLocal();
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +41,10 @@ class _SentirisPageState extends State<SentirisPage> {
             children: [
               TextButton(
                   onPressed: () {
+                    final int converterFuncionarios = int.tryParse(_funcionariosController.text) ?? 0;
+
                     Navigator.pushNamed(context, '/planoUm',
-                        arguments: _funcionariosController.text.isNotEmpty
-                            ? _funcionariosController.text
-                            : _funcionariosController.text = '0');
+                        arguments: converterFuncionarios);
                   },
                   child: Text('Proposta 1')),
               TextButton(onPressed: () {
@@ -61,7 +62,12 @@ class _SentirisPageState extends State<SentirisPage> {
               }, child: Text('Proposta 3')),
             ],
           ),
-          TextButton(onPressed: () {}, child: Text('Voltar')),
+          TextButton(onPressed: () async{
+            final valor = await proposta.acessarDadosDaUltimaProposta('porcentagem1');
+
+
+
+          }, child: Text('Voltar')),
         ],
       ),
     );
