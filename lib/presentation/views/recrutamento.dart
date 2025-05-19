@@ -1,33 +1,72 @@
+import 'package:app_iris/data/providers/recrutamento_provider.dart';
+import 'package:app_iris/shared/proposta_calculo.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class Recrutamento extends StatelessWidget {
-  const Recrutamento({super.key});
+class Recrutamento extends StatefulWidget {
+  Recrutamento({super.key});
+
+  @override
+  State<Recrutamento> createState() => _RecrutamentoState();
+}
+
+class _RecrutamentoState extends State<Recrutamento> {
+  PropostaCalculo propostaCalculo = PropostaCalculo.empty();
+
+  TextEditingController _salarioController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+
+    final valorContratacao = Provider.of<RecrutamentoProvider>(context);
+
     return Scaffold(
-      appBar: AppBar(title: Text('Recrutamento'),),
-        body: ListView(
-          padding: EdgeInsets.all(8),
-          children: [
-            Image.asset(
-              'lib/data/assets/images/logo.png',
-            ),
-            TextField(
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                  labelText: 'Salário bruto',
-                  icon: Icon(Icons.attach_money)
+      appBar: AppBar(
+        title: Text('Recrutamento'),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(8),
+        children: [
+          Image.asset(
+            'lib/data/assets/images/logo.png',
+          ),
+          TextField(
+            controller: _salarioController,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(
+                labelText: 'Salário bruto', icon: Icon(Icons.attach_money)),
+          ),
+          SizedBox(height: 20), // Espaçamento para melhor visualização
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                  onPressed: () async {
+                    // Verificar se o campo não está vazio
+                    if (_salarioController.text.isNotEmpty) {
+                      // Calcular e atualizar o estado para mostrar o resultado
+                      await valorContratacao.calcularContratacao(_salarioController.text);
+                      // Definir que o resultado deve ser mostrado
+                      valorContratacao.setMostrarResultado(true);
+                    }
+                  },
+                  child: Text('Calcular')
+              )
+            ],
+          ),
+          SizedBox(height: 20), // Espaçamento para melhor visualização
+          // Substituir Expanded por Container ou outro widget adequado
+          if(valorContratacao.mostrarResultado && valorContratacao.resultado != null)
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                'Resultado: R\$ ${valorContratacao.resultado!.toStringAsFixed(2)}',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(onPressed: (){}, child: Text('Calcular'))
-              ],
-            )
-          ],
-        ), 
+        ],
+      ),
     );
   }
 }
