@@ -12,13 +12,14 @@ class Recrutamento extends StatefulWidget {
 
 class _RecrutamentoState extends State<Recrutamento> {
   PropostaCalculo propostaCalculo = PropostaCalculo.empty();
-
+  RecrutamentoProvider recrutamentoProvider = RecrutamentoProvider();
   TextEditingController _salarioController = TextEditingController();
+  var result;
+  late bool _isVisible = false;
 
   @override
   Widget build(BuildContext context) {
-
-    final valorContratacao = Provider.of<RecrutamentoProvider>(context);
+    var valorContratacao = Provider.of<RecrutamentoProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -45,26 +46,22 @@ class _RecrutamentoState extends State<Recrutamento> {
                     // Verificar se o campo não está vazio
                     if (_salarioController.text.isNotEmpty) {
                       // Calcular e atualizar o estado para mostrar o resultado
-                      await valorContratacao.calcularContratacao(_salarioController.text);
+                       valorContratacao.calcularContratacao(_salarioController.text);
                       // Definir que o resultado deve ser mostrado
-                      valorContratacao.setMostrarResultado(true);
+                      _isVisible = true;
                     }
                   },
-                  child: Text('Calcular')
-              )
+                  child: Text('Calcular'))
             ],
           ),
-          SizedBox(height: 20), // Espaçamento para melhor visualização
-          // Substituir Expanded por Container ou outro widget adequado
-          if(valorContratacao.mostrarResultado && valorContratacao.resultado != null)
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Text(
-                'Resultado: R\$ ${valorContratacao.resultado!.toStringAsFixed(2)}',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
+          Visibility(
+            visible: _isVisible,
+            child: Text(
+              'Valor da contratação: R\$ ${valorContratacao.resultado!.toStringAsFixed(2)}',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
             ),
+          ),
         ],
       ),
     );
