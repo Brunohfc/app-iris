@@ -1,4 +1,5 @@
 import 'package:app_iris/data/datasources/local/proposta_local.dart';
+import 'package:app_iris/shared/helpers/comun_base_calc.dart';
 
 class PropostaCalculo {
   PropostaLocal propostaLocal = PropostaLocal();
@@ -14,7 +15,7 @@ class PropostaCalculo {
     int valorPsi = dados['valorPsi'];
     int porcentagem = dados['porcentagem$qualPorcentagem'];
 
-    final double adicional = valorPsi * (porcentagem / 100 * 2);
+    final double adicional = valorPsi * ((ComunCalc.paraUso(porcentagem) * 2) /100);
 
     return valorPsi + adicional;
   }

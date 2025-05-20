@@ -36,10 +36,10 @@ class _SettingsPageState extends State<SettingsPage>{
       final dados = provider.carregarUltimaProposta();
 
       _psicologoController.text = provider.valorPsicologo.toString();
-      _porcentagemUm.text = provider.porcentagemUm.toString();
-      _porcentagemDois.text = provider.porcentagemDois.toString();
-      _porcentagemTres.text = provider.porcentagemTres.toString();
-      _porcentagemContratacao.text = provider.porcentagemContratacao.toString();
+      _porcentagemUm.text = provider.porcentagemUmFormatada.toStringAsFixed(2);
+      _porcentagemDois.text = provider.porcentagemDoisFormatada.toStringAsFixed(2);
+      _porcentagemTres.text = provider.porcentagemTresFormatada.toStringAsFixed(2);
+      _porcentagemContratacao.text = provider.porcentagemContratacaoFormatada.toStringAsFixed(2);
     });
 
   }
@@ -179,21 +179,6 @@ void dispose(){
                   await provider.salvarProposta();
                 },
                 label: Text('Salvar'),
-              ),
-            ),
-            Consumer<PropostaProvider>(
-              builder: (context, provider, child) => TextButton(
-                onPressed: () async {
-                  await provider.limparDados();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('Dados apagados com sucesso!')),
-                  );
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: Colors.redAccent,
-                  foregroundColor: Colors.white,
-                ),
-                child: Text('Apagar todos os dados'),
               ),
             ),
           ],

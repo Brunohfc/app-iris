@@ -57,7 +57,7 @@ class _RecrutamentoState extends State<Recrutamento> {
           Visibility(
             visible: _isVisible,
             child: Text(
-              'Valor da contratação: R\$ ${valorContratacao.resultado!.toStringAsFixed(2)}',
+              'Valor da contratação: R\$ ${valorContratacao.resultado!}',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

@@ -1,4 +1,5 @@
 import 'package:app_iris/data/models/proposta_model.dart';
+import 'package:app_iris/shared/helpers/comun_base_calc.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -22,6 +23,11 @@ class PropostaProvider extends ChangeNotifier{
   int get porcentagemTres => _porcentagemTres;
   int get porcentagemContratacao => _porcentagemContratacao;
 
+  // Getters formatados para uso (divididos por 100)
+  double get porcentagemUmFormatada => _porcentagemUm / 100.0;
+  double get porcentagemDoisFormatada => _porcentagemDois / 100.0;
+  double get porcentagemTresFormatada => _porcentagemTres / 100.0;
+  double get porcentagemContratacaoFormatada => _porcentagemContratacao / 100.0;
 
   void setValorPsicologo(String value) {
     if(value.isEmpty){
@@ -35,14 +41,14 @@ class PropostaProvider extends ChangeNotifier{
     if(value.isEmpty){
       return;
     }
-    _porcentagemUm = int.tryParse(value.trim())!;
+    _porcentagemUm = ComunCalc.porcentagemParaInt(value);
     notifyListeners();
   }
   void setPorcentagemDois(String value){
     if(value.isEmpty){
       return;
     }
-    _porcentagemDois = int.parse(value);
+    _porcentagemDois = ComunCalc.porcentagemParaInt(value);
     notifyListeners();
   }
 
@@ -50,7 +56,7 @@ class PropostaProvider extends ChangeNotifier{
     if(value.isEmpty){
       return;
     }
-    _porcentagemTres = int.parse(value);
+    _porcentagemTres = ComunCalc.porcentagemParaInt(value);
     notifyListeners();
   }
 
@@ -58,7 +64,7 @@ class PropostaProvider extends ChangeNotifier{
     if(value.isEmpty){
       return;
     }
-    _porcentagemContratacao = int.parse(value);
+    _porcentagemContratacao = ComunCalc.porcentagemParaInt(value);
     notifyListeners();
   }
 
@@ -92,5 +98,11 @@ class PropostaProvider extends ChangeNotifier{
       _porcentagemContratacao = ultima.porcentagemContratacao;
       notifyListeners();
     }
+  }
+
+  @override
+  String toString() {
+
+    return super.toString();
   }
 }
