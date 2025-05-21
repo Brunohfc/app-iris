@@ -16,8 +16,8 @@ class PropostaCalculo {
     int porcentagem = dados['porcentagem$qualPorcentagem'];
 
     final double adicional = valorPsi * ((ComunCalc.paraUso(porcentagem) * 2) /100);
-
-    return valorPsi + adicional;
+    var result = valorPsi + adicional;
+    return result;
   }
 
   PropostaCalculo.empty();

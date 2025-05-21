@@ -20,7 +20,8 @@ class PropostaLocal {
   }
 
   Future<void> adicionarProposta(PropostaModel proposta) async {
-    await box.add(proposta);
+    await box.put('proposta',proposta);
+    await box.compact(); //for the Hive doesn't grow so far
   }
 
   List<PropostaModel> listar() {
@@ -31,14 +32,6 @@ class PropostaLocal {
     await box.putAt(index, proposta);
   }
 
-  // Future<PropostaModel?> obterUltimaProposta() async{
-  //   final box = await Hive.box<PropostaModel>('proposta_box');
-  //   if(box.isEmpty){
-  //     return null;
-  //   }
-  //   var proposta = box.getAt(box.length -1);
-  //   return proposta;
-  // }
 
   Future<int?> acessarDadosDaUltimaProposta(String dados) async {
     final box = await Hive.box<PropostaModel>('proposta_box');

@@ -17,22 +17,31 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Image.asset(
-                'lib/data/assets/images/logo.png',
+                'lib/data/assets/images/image_iris.png',
                 width: 250,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/recrutamento');
-                      }, child: Text('Recrutamento')
+                  SizedBox(
+                    width: 150,
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/recrutamento');
+                        }, child: Text('Recrutamento')
+                    ),
                   ),
-                  TextButton(onPressed: () {
-                    Navigator.pushNamed(context, '/sentiris');
-                  }, child: Text('Sentiris')),
+                  SizedBox(
+                    width: 150,
+                    child: TextButton(
+
+                        onPressed: () {
+                      Navigator.pushNamed(context, '/sentiris');
+                    }, child: Text('Sentiris')),
+                  ),
                 ],
               )
             ],

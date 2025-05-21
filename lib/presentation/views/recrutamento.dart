@@ -29,7 +29,7 @@ class _RecrutamentoState extends State<Recrutamento> {
         padding: EdgeInsets.all(8),
         children: [
           Image.asset(
-            'lib/data/assets/images/logo.png',
+            'lib/data/assets/images/image_iris.png',
           ),
           TextField(
             controller: _salarioController,
@@ -57,7 +57,7 @@ class _RecrutamentoState extends State<Recrutamento> {
           Visibility(
             visible: _isVisible,
             child: Text(
-              'Valor da contratação: R\$ ${valorContratacao.resultado!}',
+              'Valor da contratação: R\$ ${valorContratacao.resultado!.toStringAsFixed(2)}',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),

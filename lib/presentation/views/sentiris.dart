@@ -1,4 +1,5 @@
 import 'package:app_iris/data/datasources/local/proposta_local.dart';
+import 'package:app_iris/shared/custom_padding.dart';
 import 'package:app_iris/shared/helpers/converter_helper.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +26,7 @@ class _SentirisPageState extends State<SentirisPage> {
         children: [
           SizedBox(
             width: 250,
-            child: Image.asset('lib/data/assets/images/logo.png'),
+            child: Image.asset('lib/data/assets/images/image_iris.png'),
           ),
           TextField(
             controller: _funcionariosController,
@@ -34,6 +35,9 @@ class _SentirisPageState extends State<SentirisPage> {
               icon: Icon(Icons.person),
               labelText: 'Número funcionarios',
             ),
+          ),
+          SizedBox(
+            height: 50,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -63,12 +67,25 @@ class _SentirisPageState extends State<SentirisPage> {
                   child: Text('Proposta 3')),
             ],
           ),
-          TextButton(
-              onPressed: () async {
-                final valor =
-                    await proposta.acessarDadosDaUltimaProposta('porcentagem1');
-              },
-              child: Text('Voltar')),
+          SizedBox(
+            height: 50,
+          ),
+          Align(
+            child: SizedBox(
+              width: 100,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: Colors.red[400],
+                  foregroundColor: Colors.white,
+                  elevation: 50
+                ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Voltar')),
+            ),
+          ),
+
         ],
       ),
     );
